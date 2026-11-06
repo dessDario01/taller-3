@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="qr_zona3_rana_gris8" size="0.100000 0.100000" />
+    <ImageTarget name="qr_zona3_tortuga_gris8" size="0.100000 0.100000" />
+    <ImageTarget name="qr_zona3_serpiente_gris8" size="0.100000 0.100000" />
+  </Tracking>
+</QCARConfig>
