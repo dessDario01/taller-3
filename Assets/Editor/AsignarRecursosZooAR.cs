@@ -28,6 +28,12 @@ public static class AsignarRecursosZooAR
     /// </summary>
     private static readonly Color TINTE_FONDO = new Color(0.42f, 0.44f, 0.48f, 1f);
 
+    /// <summary>
+    /// Nombre (sin extension) del clip que suena de fondo en las cinco
+    /// interfaces. Cambiar aqui para cambiar la musica de toda la app.
+    /// </summary>
+    private const string CLIP_FONDO = "titanic-flauta";
+
     // Interfaz, fila, imagen y nombre de cada animal.
     private static readonly (string panel, int fila, string imagen, string nombre)[] ANIMALES =
     {
@@ -121,6 +127,9 @@ public static class AsignarRecursosZooAR
         // ---------- Un solo Audio Listener ----------
         int oyentes = DejarUnSoloAudioListener();
 
+        // ---------- Camara de UI en la navegacion ----------
+        bool camaraOk = PonerCamaraUI();
+
         // ---------- Sonido de fondo ----------
         bool audioOk = PonerClipDeFondo();
 
@@ -132,6 +141,7 @@ public static class AsignarRecursosZooAR
             $"[ZooAR] Recursos asignados. Sprites convertidos: {sprites}. " +
             $"Slots cubiertos: {puestos}. Sin imagen: {faltantes}. " +
             $"Textos legibles: {textos}. Audio Listeners desactivados: {oyentes}. " +
+            $"Camara de UI: {(camaraOk ? "enlazada" : "NO encontrada")}. " +
             $"Sonido de fondo: {(audioOk ? "asignado" : "NO encontrado")}.\n" +
             "Guarda la escena con Ctrl+S.");
     }
@@ -299,13 +309,48 @@ public static class AsignarRecursosZooAR
         EditorUtility.SetDirty(txt);
     }
 
+    /// <summary>
+    /// Enlaza la camara normal de la escena con NavegacionZooAR, que la apaga
+    /// mientras Vuforia esta activo. Se busca por nombre y, si no aparece, se
+    /// toma cualquier camara que no sea la ARCamera.
+    /// </summary>
+    private static bool PonerCamaraUI()
+    {
+        var nav = Object.FindFirstObjectByType<NavegacionZooAR>();
+        if (nav == null) return false;
+
+        GameObject camara = GameObject.Find("Main Camera");
+
+        if (camara == null)
+        {
+            foreach (var c in Object.FindObjectsByType<Camera>(
+                         FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (c.name.ToUpperInvariant().Contains("AR")) continue;
+                camara = c.gameObject;
+                break;
+            }
+        }
+
+        if (camara == null) return false;
+
+        var so = new SerializedObject(nav);
+        so.FindProperty("camaraUI").objectReferenceValue = camara;
+        so.ApplyModifiedProperties();
+        return true;
+    }
+
     private static bool PonerClipDeFondo()
     {
         var manager = Object.FindFirstObjectByType<AudioManagerZooAR>();
         if (manager == null) return false;
 
-        AudioClip clip = null;
-        if (Directory.Exists(AUD))
+        // Primero el clip elegido explicitamente.
+        AudioClip clip = AssetDatabase.LoadAssetAtPath<AudioClip>(
+            AUD + CLIP_FONDO + ".mp3");
+
+        // Si no esta, se acepta cualquiera marcado como FONDO en su nombre.
+        if (clip == null && Directory.Exists(AUD))
         {
             foreach (var ruta in Directory.GetFiles(AUD))
             {
@@ -317,7 +362,13 @@ public static class AsignarRecursosZooAR
             }
         }
 
-        if (clip == null) return false;
+        if (clip == null)
+        {
+            Debug.LogWarning($"[ZooAR] No encuentro {CLIP_FONDO}.mp3 en {AUD}");
+            return false;
+        }
+
+        Debug.Log($"[ZooAR] Sonido de fondo: {clip.name}");
 
         var so = new SerializedObject(manager);
         so.FindProperty("clipFondo").objectReferenceValue = clip;

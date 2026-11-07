@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Navegacion entre las 5 interfaces de ZooAR, resueltas como paneles
@@ -24,6 +24,10 @@ public class NavegacionZooAR : MonoBehaviour
     [Tooltip("Panel con el titulo y el boton de regreso del overlay de RA.")]
     [SerializeField] private GameObject overlayRA;
 
+    [Tooltip("Camara normal de la escena. Se apaga mientras la ARCamera de " +
+             "Vuforia esta activa, porque dos camaras a la vez se pisan.")]
+    [SerializeField] private GameObject camaraUI;
+
     private GameObject panelActual;
     private GameObject panelOrigen;
 
@@ -32,6 +36,7 @@ public class NavegacionZooAR : MonoBehaviour
         MostrarSolo(interfaz1Presentacion);
         if (raRoot != null) raRoot.SetActive(false);
         if (overlayRA != null) overlayRA.SetActive(false);
+        if (camaraUI != null) camaraUI.SetActive(true);
     }
 
     // ----- Botones de navegacion -----
@@ -77,6 +82,9 @@ public class NavegacionZooAR : MonoBehaviour
 
         OcultarTodas();
 
+        // Primero se apaga la camara normal y despues se enciende Vuforia,
+        // para que no haya un instante con dos camaras activas.
+        if (camaraUI != null) camaraUI.SetActive(false);
         if (raRoot != null) raRoot.SetActive(true);
 
         // El overlay lo enciende y apaga cada MarcadorZooAR segun el reconocimiento;
@@ -95,6 +103,7 @@ public class NavegacionZooAR : MonoBehaviour
     {
         if (raRoot != null) raRoot.SetActive(false);
         if (overlayRA != null) overlayRA.SetActive(false);
+        if (camaraUI != null) camaraUI.SetActive(true);
 
         if (AudioManagerZooAR.Instancia != null)
             AudioManagerZooAR.Instancia.SalirDeRA();

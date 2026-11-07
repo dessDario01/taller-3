@@ -791,8 +791,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2049564751}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
@@ -1202,7 +1201,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2049564751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554138809
@@ -3753,6 +3753,7 @@ MonoBehaviour:
   interfaz5Selva: {fileID: 711833521}
   raRoot: {fileID: 542749089}
   overlayRA: {fileID: 917439058}
+  camaraUI: {fileID: 330585543}
 --- !u!4 &1224179681
 Transform:
   m_ObjectHideFlags: 0
@@ -6131,12 +6132,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049564750}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 330585546}
+  m_Father: {fileID: 542749090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2049564752
 MonoBehaviour:
@@ -6298,7 +6299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManagerZooAR
   fuenteFondo: {fileID: 811132697}
   fuenteRA: {fileID: 1483678036}
-  clipFondo: {fileID: 8300000, guid: 8a25c3cabd5aa9649becac50b0acf279, type: 3}
+  clipFondo: {fileID: 8300000, guid: 1c96d6312664c95489ef6d70be6628c5, type: 3}
   volumenFondo: 0.6
 --- !u!4 &2051143679
 Transform:

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
     <Tracking>
+        <ImageTarget name="a_mano" size="100.000000 133.333328"/>
+        <ImageTarget name="delfin1" size="100.000000 66.666664"/>
+        <ImageTarget name="pinguino" size="100.000000 74.514565"/>
         <ImageTarget name="ballena" size="100.000000 66.444443"/>
         <ImageTarget name="jaguar" size="100.000000 125.000000"/>
-        <ImageTarget name="delfin3" size="100.000000 66.444443"/>
         <ImageTarget name="marcador_sierra_03" size="100.000000 100.000000"/>
         <ImageTarget name="marcador_sierra_02" size="100.000000 100.000000"/>
         <ImageTarget name="marcador_sierra_01" size="100.000000 100.000000"/>
-        <ImageTarget name="CARA1.Front" size="100.000000 100.000000"/>
         <ImageTarget name="CARA1.Left" size="100.000000 100.000000"/>
         <ImageTarget name="CARA1.Back" size="100.000000 100.210526"/>
         <ImageTarget name="CARA1.Right" size="100.000000 100.000000"/>
-        <ImageTarget name="CARA1.Bottom" size="100.000000 99.789474"/>
+        <ImageTarget name="CARA1.Front" size="100.000000 100.000000"/>
         <ImageTarget name="CARA1.Top" size="100.000000 99.790794"/>
+        <ImageTarget name="CARA1.Bottom" size="100.000000 99.789474"/>
         <MultiTarget name="CARA1">
             <Part name="CARA1.Left" translation="-50.0 0 0" rotation="AD: 0 1 0 -90"/>
             <Part name="CARA1.Right" translation="50.0 0 0" rotation="AD: 0 1 0 90"/>

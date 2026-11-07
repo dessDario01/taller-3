@@ -74,8 +74,8 @@
   <ItemGroup>
     <None Include="Assets\TutorialInfo\StyleSheets\ReadmeEditor.uss" />
     <None Include="Assets\StreamingAssets\Vuforia\Taller1.xml" />
-    <None Include="Assets\StreamingAssets\Vuforia\TALLER3.xml" />
     <None Include="Assets\TutorialInfo\StyleSheets\ReadmeEditorLight.uss" />
+    <None Include="Assets\StreamingAssets\Vuforia\TALLER3.xml" />
     <None Include="Assets\TutorialInfo\StyleSheets\ReadmeEditorDark.uss" />
   </ItemGroup>
   <ItemGroup>
